@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PromocodePage({ params }: {
   params: { code: string }
 }) {
@@ -5,7 +7,8 @@ export default function PromocodePage({ params }: {
 
   return (
     <div>
-      promocode page
+      <Link href={'/promocodes'}>← Promocodes</Link>
+      <p>promocode page</p>
       <p>{code}</p>
     </div>
   );

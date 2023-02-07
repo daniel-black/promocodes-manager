@@ -3,9 +3,9 @@ import { PromocodesSidebar } from "@/components/PromocodesSidebar";
 
 export default function PromocodesLayout({ children }: LayoutProps) {
   return (
-    <div className="flex py-10">
-      <PromocodesSidebar />
+    <div className="flex justify-between py-10">
       {children}
+      <PromocodesSidebar />
     </div>
   );
 }
