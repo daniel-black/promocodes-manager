@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function PromocodesPage() {
   return (
     <div className="flex justify-center">
-      <table className="bg-gray-400 table-auto border-collapse rounded-lg">
+      <table className="bg-gray-400 overflow-auto table-auto border-collapse rounded-lg">
         <thead>
           <tr className="border-b border-gray-500">
             <th className="px-20 py-3">Code</th>

@@ -1,10 +1,12 @@
 export default function PromocodePage({ params }: {
   params: { code: string }
 }) {
+  const { code } = params
+
   return (
     <div>
       promocode page
-      <p>{params.code}</p>
+      <p>{code}</p>
     </div>
   );
 }

@@ -1,9 +1,10 @@
-import { LayoutProps } from "../layout";
+import { LayoutProps } from "@/app/layout";
+import { PromocodesSidebar } from "@/components/PromocodesSidebar";
 
 export default function PromocodesLayout({ children }: LayoutProps) {
   return (
-    <div>
-      <p>promocodes layout</p>
+    <div className="flex py-10">
+      <PromocodesSidebar />
       {children}
     </div>
   );

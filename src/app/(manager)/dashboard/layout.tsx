@@ -1,4 +1,4 @@
-import { LayoutProps } from "../../layout";
+import { LayoutProps } from "@/app/layout";
 
 export default function DashboardLayout({ children }: LayoutProps) {
   return (
