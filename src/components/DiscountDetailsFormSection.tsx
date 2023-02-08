@@ -20,7 +20,17 @@ export const DiscountDetailsFormSection = ({
 }: DiscountDetailsFormSectionProps) => {
   return (
     <section>
-      <h3>Discount {codeType}</h3>
+      <h3 className="capitalize">Discount {codeType}</h3>
+      {codeType === 'amount' ? (
+        <div>
+          amount
+          <label htmlFor="fd">Amount</label>
+        </div>
+      ) : (
+        <div>
+          percent
+        </div>
+      )}
     </section>
   );
 }

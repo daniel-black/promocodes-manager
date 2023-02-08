@@ -18,26 +18,33 @@ export const NewPromocodeForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <CodeNameFormSection
-        code={code}
-        setCode={setCode}
-      />
-      <CodeTypeFormSection
-        codeType={codeType}
-        setCodeType={setCodeType}
-      />
-      <DiscountDetailsFormSection
-        codeType={codeType}
-        discount={discount}
-        setDiscount={setDiscount}
-        maxDiscount={maxDiscount}
-        setMaxDiscount={setMaxDiscount}
-      />
+    <form onSubmit={handleSubmit}>
+      <div className="grid grid-cols-2 gap-6">
+        <div className="space-y-6">
+          <CodeNameFormSection
+            code={code}
+            setCode={setCode}
+          />
+          <CodeTypeFormSection
+            codeType={codeType}
+            setCodeType={setCodeType}
+          />
+        </div>
+        <div className="bg-stone-300 h-full">
+          column 2
+          <DiscountDetailsFormSection
+            codeType={codeType}
+            discount={discount}
+            setDiscount={setDiscount}
+            maxDiscount={maxDiscount}
+            setMaxDiscount={setMaxDiscount}
+          />
+        </div>
+      </div>
       <input
         type="submit"
         value={'Create'}
-        className='px-3 py-2 bg-emerald-300 rounded-lg'
+        className='mt-9 px-3 py-2 text-lg bg-emerald-300 text-emerald-700 rounded w-full cursor-pointer'
       />
     </form>
   );
