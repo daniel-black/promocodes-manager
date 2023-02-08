@@ -5,6 +5,8 @@ import { CodeType } from "@/types";
 import { CodeNameFormSection } from "./CodeNameFormSection";
 import { CodeTypeFormSection } from "./CodeTypeFormSection";
 import { DiscountDetailsFormSection } from "./DiscountDetailsFormSection";
+import { StartFormSection } from "./StartFormSection";
+import { EndFormSection } from "./EndFormSection";
 
 export const NewPromocodeForm = () => {
   const [code, setCode] = useState('');
@@ -12,10 +14,12 @@ export const NewPromocodeForm = () => {
   const [amountDiscount, setAmountDiscount] = useState(10);
   const [percentDiscount, setPercentDiscount] = useState(10);
   const [maxDiscount, setMaxDiscount] = useState<number | undefined>();
+  const [startDate, setStartDate] = useState<string | undefined>();
+  const [endDate, setEndDate] = useState<string | undefined>();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log({ code, codeType });
+    console.log({ code, codeType, amountDiscount, percentDiscount, maxDiscount, startDate, endDate });
   }
 
   return (
@@ -42,8 +46,18 @@ export const NewPromocodeForm = () => {
             setMaxDiscount={setMaxDiscount}
           />
         </div>
-        <p>Start Date</p>
-        <p>End Date</p>
+        <div>
+          <StartFormSection
+            startDate={startDate}
+            setStartDate={setStartDate}
+          />
+        </div>
+        <div>
+          <EndFormSection
+            endDate={endDate}
+            setEndDate={setEndDate}
+          />
+        </div>
       </div>
       <input
         type="submit"
