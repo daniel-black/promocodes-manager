@@ -9,7 +9,8 @@ import { DiscountDetailsFormSection } from "./DiscountDetailsFormSection";
 export const NewPromocodeForm = () => {
   const [code, setCode] = useState('');
   const [codeType, setCodeType] = useState<CodeType>('amount');
-  const [discount, setDiscount] = useState(10);
+  const [amountDiscount, setAmountDiscount] = useState(10);
+  const [percentDiscount, setPercentDiscount] = useState(10);
   const [maxDiscount, setMaxDiscount] = useState<number | undefined>();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -19,7 +20,7 @@ export const NewPromocodeForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 grid-rows-2 gap-6">
         <div className="space-y-6">
           <CodeNameFormSection
             code={code}
@@ -30,16 +31,19 @@ export const NewPromocodeForm = () => {
             setCodeType={setCodeType}
           />
         </div>
-        <div className="bg-stone-300 h-full">
-          column 2
+        <div>
           <DiscountDetailsFormSection
             codeType={codeType}
-            discount={discount}
-            setDiscount={setDiscount}
+            amountDiscount={amountDiscount}
+            setAmountDiscount={setAmountDiscount}
+            percentDiscount={percentDiscount}
+            setPercentDiscount={setPercentDiscount}
             maxDiscount={maxDiscount}
             setMaxDiscount={setMaxDiscount}
           />
         </div>
+        <p>Start Date</p>
+        <p>End Date</p>
       </div>
       <input
         type="submit"
