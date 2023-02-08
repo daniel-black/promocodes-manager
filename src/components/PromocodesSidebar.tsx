@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const PromocodesSidebar = () => {
   const segments = useSelectedLayoutSegments();
-  const showSidebar = segments.length === 1;
+  const showSidebar = segments.length === 1 && segments[0] !== 'new';
 
   if (!showSidebar) return null;
 
