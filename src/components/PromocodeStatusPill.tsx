@@ -1,7 +1,7 @@
 import { Status } from "@/types";
 
 export function PromocodeStatusPill({ status }: { status: Status }) {
-  let pillStyle = 'flex justify-center items-center w-16 py-1 bg-green-200 rounded-full text-xs text-center border capitalize';
+  let pillStyle = 'flex justify-center items-center w-16 py-1 rounded-full text-xs text-center border capitalize';
   // let icon = '';
 
   switch (status) {

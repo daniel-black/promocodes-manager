@@ -1,3 +1,4 @@
+import { PromocodeDiscountPill } from "@/components/PromocodeDiscountPill";
 import { PromocodeStatusPill } from "@/components/PromocodeStatusPill";
 import { mockPromocodes } from "@/data";
 import Link from "next/link";
@@ -10,8 +11,7 @@ export default function PromocodesPage() {
           <tr className="bg-gray-100 text-gray-500">
             <th className="px-12 py-3">Code</th>
             <th className="px-12 py-3 text-center">Status</th>
-            {/* <th className="px-12 py-3">Type</th> */}
-            <th className="px-12 py-3">Discount</th>
+            <th className="px-12 py-3 text-center">Discount</th>
             <th className="px-12 py-3">Times Applied</th>
           </tr>
         </thead>
@@ -23,10 +23,11 @@ export default function PromocodesPage() {
                   {p.code}
                 </Link>
               </td>
-              <td className="px-12 py-3"><PromocodeStatusPill status={p.status} /></td>
-              {/* <td className="px-12 py-3">{p.codeType}</td> */}
-              <td className="px-12 py-3 text-right">
-                {p.codeType === 'amount' && '$'}{p.discount}{p.codeType === 'percent' && '%'}
+              <td className="px-12 py-3">
+                <PromocodeStatusPill status={p.status} />
+              </td>
+              <td className="px-12 py-3">
+                <PromocodeDiscountPill codeType={p.codeType} discount={p.discount} />
               </td>
               <td className="px-12 py-3 text-right">{Math.round(Math.random() * 1000)}</td>
             </tr>
