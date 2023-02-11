@@ -1,11 +1,15 @@
 import { PromocodeDiscountPill } from "@/components/PromocodeDiscountPill";
 import { PromocodeStatusPill } from "@/components/PromocodeStatusPill";
 import { mockPromocodes } from "@/data";
+import { prisma } from "@/db";
 import Link from "next/link";
 
-export default function PromocodesPage() {
+export default async function PromocodesPage() {
+  const promocodes = await prisma.promocode.findMany();
+
   return (
     <div className="overflow-auto rounded-lg bg-gray-200 shadow-lg h-[84vh]">
+      <pre>{JSON.stringify(promocodes, null, 2)}</pre>
       <table className="text-left relative">
         <thead className="sticky top-0 opacity-[97%]">
           <tr className="bg-gray-100 text-gray-500">

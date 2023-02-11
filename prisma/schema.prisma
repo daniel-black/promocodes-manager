@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Promocode {
+  id                Int                @id @default(autoincrement())
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime?          @updatedAt
+  code              String
+  status            String
+  codeType          String
+  discount          Decimal
+  maxDiscount       Decimal?
+  start             DateTime           @default(now())
+  end               DateTime?
+  AppliedPromocodes AppliedPromocode[]
+}
+
+model AppliedPromocode {
+  id          Int       @id @default(autoincrement())
+  promocode   Promocode @relation(fields: [promocodeId], references: [id])
+  promocodeId Int       @unique
+  succeeded   Boolean
+  savings     Decimal 
+}
