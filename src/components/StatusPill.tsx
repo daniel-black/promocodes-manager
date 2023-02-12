@@ -24,9 +24,9 @@ export function StatusPill({ status }: { status: Status }) {
   }
 
   return (
-    <span className={pillStyle}>
+    <div className={pillStyle}>
       {/* {icon}&nbsp; */}
       {status}
-    </span>
+    </div>
   );
 }

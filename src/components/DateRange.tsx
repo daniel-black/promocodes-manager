@@ -1,16 +1,16 @@
+export const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  dateStyle: 'medium'
+});
+
 type DateRangeProps = {
   start: string;
   end?: string;
 };
 
 export function DateRange({ start, end }: DateRangeProps) {
-  const formatter = new Intl.DateTimeFormat('en-US', {
-    dateStyle: 'medium'
-  });
-
-  const startText = formatter.format(new Date(start));
+  const startText = dateFormatter.format(new Date(start));
   const endText = end
-    ? formatter.format(new Date(end))
+    ? dateFormatter.format(new Date(end))
     : 'open';
 
   return (
