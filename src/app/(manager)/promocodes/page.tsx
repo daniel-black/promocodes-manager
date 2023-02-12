@@ -90,8 +90,8 @@ function TableBody({ promocodes }: TableBodyProps) {
         )
       ) : (
         <tr>
-          <td colSpan={5}>
-            Try creating a New Promocode
+          <td colSpan={6} className='py-9 text-center text-lg text-gray-700'>
+            Try creating a New Promocode!
           </td>
         </tr>
       )}
