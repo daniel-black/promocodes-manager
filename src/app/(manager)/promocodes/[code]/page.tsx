@@ -1,7 +1,7 @@
 import { DateRange } from "@/components/DateRange";
 import { DeleteButton } from "@/components/DeleteButton";
 import { DiscountDetails } from "@/components/DiscountDetails";
-import { mockPromocodes } from "@/data";
+import { StatusPill } from "@/components/StatusPill";
 import { Promocode } from "@/types";
 import { getBaseURL } from "@/utils/url";
 import Link from "next/link";
@@ -20,12 +20,15 @@ export default async function PromocodePage({ params }: {
   // const otherPromocodes = promocodes.filter(pc => pc.code !== code);
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 w-full">
       <div className="flex justify-between items-center">
-        <h1 className="text-4xl font-mono text-gray-700">{promocode?.code}</h1>
-        <span className={`flex justify-center items-center text-2xl w-10 h-10 rounded-lg bg-gray-400 text-gray-600 border border-gray-500 shadow`}>
-          {promocode.codeType === 'amount' ? '$' : '%'}
-        </span>
+        <div className="flex justify-start items-center space-x-5">
+          <span className={`flex justify-center items-center text-4xl w-14 h-14 rounded-lg bg-gray-400 text-gray-600 border border-gray-500 shadow`}>
+            {promocode.codeType === 'amount' ? '$' : '%'}
+          </span>
+          <h1 className="text-6xl font-mono text-gray-700">{promocode?.code}</h1>
+        </div>
+        <StatusPill status={promocode.status} big={true} />
       </div>
       <DateRange
         start={promocode.start}

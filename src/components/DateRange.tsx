@@ -1,3 +1,5 @@
+import { ThreeDots } from "./Icons";
+
 export const dateFormatter = new Intl.DateTimeFormat('en-US', {
   dateStyle: 'medium'
 });
@@ -11,20 +13,18 @@ export function DateRange({ start, end }: DateRangeProps) {
   const startText = dateFormatter.format(new Date(start));
   const endText = end
     ? dateFormatter.format(new Date(end))
-    : 'open';
+    : <ThreeDots />;
 
   return (
-    <div>
-      <div className="flex justify-between text-gray-600">
-        <p>Start</p>
-        <p>End</p>
-      </div>
-      <div className="flex flex-nowrap justify-between items-center space-x-2 text-gray-600">
-        <div>
+    <div className="text-lg">
+      <div className="flex flex-nowrap justify-between items-center text-gray-600">
+        <div className="border-2 border-gray-400 px-6 py-1 rounded-full text-center">
+          <p className="text-sm text-gray-500">Start</p>
           <p className="whitespace-nowrap">{startText}</p>
         </div>
-        <div className="h-[2px] bg-gray-400 flex-grow w-full rounded-full" />
-        <div>
+        <div className="h-[2px] bg-gray-400 flex-grow w-full" />
+        <div className="border-2 border-gray-400 px-6 py-1 rounded-full text-center">
+          <p className="text-sm text-gray-500">End</p>
           <p className="whitespace-nowrap">{endText}</p>
         </div>
       </div>

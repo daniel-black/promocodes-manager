@@ -1,7 +1,15 @@
 import { Status } from "@/types";
 
-export function StatusPill({ status }: { status: Status }) {
-  let pillStyle = 'flex justify-center items-center w-16 py-1 rounded-full text-xs text-center border capitalize';
+type StatusPillProps = {
+  status: Status;
+  big?: boolean;
+};
+
+export function StatusPill({ status, big = false }: StatusPillProps) {
+  let pillStyle = 'flex justify-center items-center rounded-full text-center border capitalize';
+  pillStyle += big 
+    ? ' px-4 py-2 text-xl'
+    : ' px-2 py-1 text-xs';
   // let icon = '';
 
   switch (status) {
