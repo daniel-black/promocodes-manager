@@ -1,3 +1,5 @@
+import { ThreeDots } from "@/components/Icons";
+import { OptionsButton } from "@/components/OptionsButton";
 import { PromocodeDiscountPill } from "@/components/PromocodeDiscountPill";
 import { PromocodeStatusPill } from "@/components/PromocodeStatusPill";
 import { Promocode } from "@/types";
@@ -19,6 +21,7 @@ export default async function PromocodesPage() {
             <th className="px-12 py-3">Code</th>
             <th className="px-12 py-3 text-center">Status</th>
             <th className="px-12 py-3 text-center">Discount</th>
+            <th></th>
           </tr>
         </thead>
         <tbody className="overflow-auto w-full">
@@ -35,6 +38,9 @@ export default async function PromocodesPage() {
               </td>
               <td className="px-12 py-3">
                 <PromocodeDiscountPill codeType={p.codeType} discount={p.discount} />
+              </td>
+              <td className="py-3 pr-12">
+                <OptionsButton code={p.code} id={p.id} />
               </td>
             </tr>
           )}
