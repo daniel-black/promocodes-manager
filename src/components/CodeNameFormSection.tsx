@@ -20,6 +20,7 @@ export const CodeNameFormSection = ({
         onChange={e => setCode(e.target.value.toUpperCase())}
         placeholder={'SAVE10'}
         className='w-full text-lg rounded py-2 px-4 font-mono bg-gray-50 text-gray-600 shadow outline-none focus:ring-1'
+        pattern="^[A-Z0-9]+$"
         required
       />
     </section>

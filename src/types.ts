@@ -12,7 +12,10 @@ export type Promocode = {
 
 export type Status = 
   | 'active'
+  | 'inactive'
   | 'paused'
   | 'disabled';
 
-export type CodeType = 'amount' | 'percent';
+export type CodeType = 
+  | 'amount' 
+  | 'percent';

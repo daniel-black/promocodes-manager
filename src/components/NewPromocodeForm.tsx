@@ -1,12 +1,14 @@
 'use client';
 
 import { FormEvent, useState } from "react";
-import { CodeType } from "@/types";
+import { CodeType, Status } from "@/types";
 import { CodeNameFormSection } from "./CodeNameFormSection";
 import { CodeTypeFormSection } from "./CodeTypeFormSection";
 import { DiscountDetailsFormSection } from "./DiscountDetailsFormSection";
 import { StartFormSection } from "./StartFormSection";
 import { EndFormSection } from "./EndFormSection";
+import { getBaseURL } from "@/utils/url";
+import { useRouter } from "next/navigation";
 
 export const NewPromocodeForm = () => {
   const [code, setCode] = useState('');
@@ -16,10 +18,27 @@ export const NewPromocodeForm = () => {
   const [maxDiscount, setMaxDiscount] = useState<number | undefined>();
   const [startDate, setStartDate] = useState<string | undefined>();
   const [endDate, setEndDate] = useState<string | undefined>();
+  const router = useRouter();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log({ code, codeType, amountDiscount, percentDiscount, maxDiscount, startDate, endDate });
+
+    const body = JSON.stringify({
+      code,
+      codeType,
+      discount: codeType === 'amount' ? amountDiscount : percentDiscount,
+      maxDiscount: codeType === 'amount' ? null : maxDiscount,
+      start: startDate,
+      end: endDate,
+    });
+
+    await fetch(`${getBaseURL()}/api/promocodes`, {
+      method: 'POST',
+      body,
+    });
+    router.refresh();
+    router.replace('/promocodes');
   }
 
   return (
@@ -54,6 +73,7 @@ export const NewPromocodeForm = () => {
         </div>
         <div>
           <EndFormSection
+            startDate={startDate}
             endDate={endDate}
             setEndDate={setEndDate}
           />
