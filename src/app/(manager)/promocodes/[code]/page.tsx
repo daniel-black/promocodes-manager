@@ -6,6 +6,7 @@ import { Promocode } from "@/types";
 import { getBaseURL } from "@/utils/url";
 import Link from "next/link";
 
+
 export default async function PromocodePage({ params }: {
   params: { code: string }
 }) {
@@ -19,6 +20,8 @@ export default async function PromocodePage({ params }: {
   const promocode = promocodes.find(pc => pc.code === code);
   // const otherPromocodes = promocodes.filter(pc => pc.code !== code);
 
+  console.log(promocode)
+
   return (
     <div className="space-y-5 w-full">
       <div className="flex justify-between items-center">
@@ -29,6 +32,14 @@ export default async function PromocodePage({ params }: {
           <h1 className="text-6xl font-mono text-gray-700">{promocode?.code}</h1>
         </div>
         <StatusPill status={promocode.status} big={true} />
+      </div>
+      <div className="w-64 text-gray-500">
+        <div className="flex justify-between items-baseline">
+          <span className="text-sm">Created</span><span>{new Date(promocode.createdAt).toLocaleString()}</span>
+        </div>
+        <div className="flex justify-between items-baseline">
+          <span className="text-sm">Updated</span><span>{new Date(promocode.updatedAt).toLocaleString()}</span>
+        </div>
       </div>
       <DateRange
         start={promocode.start}

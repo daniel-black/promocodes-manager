@@ -12,7 +12,7 @@ export const BreadCrumbs = () => {
     <div className="flex space-x-4 text-gray-600 mb-10 select-none">
       {segments.map((segment, i) =>
         <div key={i} className='space-x-4'>
-          <span>/</span>
+          <span className="text-gray-400">/</span>
           <Link
             href={buildHref(segments, i)}
             className={`capitalize hover:underline ${i === segments.length - 1 ? 'text-gray-800' : ''}`}
