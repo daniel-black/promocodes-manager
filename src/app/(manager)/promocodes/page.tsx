@@ -29,7 +29,8 @@ function TableHeader() {
   return (
     <thead className="bg-gray-400 text-gray-700">
       <tr>
-        <th className="py-3 pl-10 rounded-tl-xl text-left">Code</th>
+        <th className="py-3 pl-10 rounded-tl-xl text-left"></th>
+        <th className="py-3 text-left">Code</th>
         <th className="py-3">Discount</th>
         <th className="py-3">Status</th>
         <th className="py-3">Start</th>
@@ -49,7 +50,12 @@ function TableBody({ promocodes }: TableBodyProps) {
       {promocodes.length > 0 ? (
         promocodes.map(p =>
           <tr key={p.code} className='hover:bg-gray-300 duration-75 transition-all ease-linear'>
-            <td className="pl-10 py-3 font-mono text-gray-700">
+            <td className="w-10">
+              <div className="flex justify-center">
+                <OptionsButton code={p.code} id={p.id} />
+              </div>
+            </td>
+            <td className="py-3 font-mono text-gray-700 text-left">
               <Link
                 href={`/promocodes/${p.code}`}
                 className='hover:underline'

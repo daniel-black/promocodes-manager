@@ -16,6 +16,8 @@ export const OptionsButton = ({ code, id }: OptionsButtonProps) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
 
+  const toggleOptions = () => setShowOptions(!showOptions);
+
   const handleDelete = async () => {
     setIsDeleting(true);
     try {
@@ -37,31 +39,36 @@ export const OptionsButton = ({ code, id }: OptionsButtonProps) => {
   }
 
   return (
-    <div>
-      {showOptions ? (
-        <div className="flex">
-          <Link
-            href={`/promocodes/${code}/edit`}
-            className='scale-[80%] text-sky-400'
-          >
-            <Edit />
-          </Link>
-          <button
-            onClick={handleDelete}
-            className="scale-[80%] text-rose-500"
-            disabled={isDeleting}
-          >
-            <Delete />
-          </button>
+    <div className="relative">
+      <button
+        onClick={toggleOptions}
+        className="scale-[60%] text-gray-400 flex justify-center items-center w-8 h-8 rounded-full bg-gray-100 shadow"
+      >
+        <ThreeDots />
+      </button>
+      {showOptions &&
+        <div className="absolute top-7 left-1 px-4 py-3 bg-gray-50 z-10 shadow-lg rounded space-y-2">
+          {isDeleting ? (
+            <p className="text-rose-500">Deleting...</p>
+          ) : (
+            <>
+              <Link
+                href={`/promocodes/${code}/edit`}
+                className='text-sky-400 flex'
+              >
+                <Edit />&nbsp;Edit
+              </Link>
+              <button
+                onClick={handleDelete}
+                className="text-rose-500 flex"
+                disabled={isDeleting}
+              >
+                <Delete />&nbsp;Delete
+              </button>
+            </>
+          )}
         </div>
-      ) : (
-        <button
-          onClick={() => setShowOptions(true)}
-          className="text-gray-500 scale-[80%] flex items-center justify-center w-8 h-8 rounded-lg hover:bg-gray-400 hover:shadow-sm"
-        >
-          <ThreeDots />
-        </button>
-      )}
+      }
     </div>
   );
 }
