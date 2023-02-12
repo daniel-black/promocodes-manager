@@ -20,34 +20,30 @@ export default async function PromocodePage({ params }: {
   // const otherPromocodes = promocodes.filter(pc => pc.code !== code);
 
   return (
-    <div>
-      <Link href={'/promocodes'}>← Promocodes</Link>
-
-      <div className="space-y-5 mt-10">
-        <div className="flex justify-between items-center">
-          <h1 className="text-4xl font-mono text-gray-700">{promocode?.code}</h1>
-          <span className={`flex justify-center items-center text-2xl w-10 h-10 rounded-lg bg-gray-400 text-gray-600 border border-gray-500 shadow`}>
-            {promocode.codeType === 'amount' ? '$' : '%'}
-          </span>
-        </div>
-        <DateRange
-          start={promocode.start}
-          end={promocode.end}
-        />
-        <DiscountDetails
-          codeType={promocode.codeType}
-          discount={promocode.discount}
-          maxDiscount={promocode.maxDiscount}
-        />
-        <div className="flex space-x-2">
-          <Link
-            href={`/promocodes/${code}/edit`}
-            className='bg-cyan-300 text-cyan-800 rounded border border-cyan-500 shadow-sm px-3 py-1'
-          >
-            Edit
-          </Link>
-          <DeleteButton id={promocode.id} />
-        </div>
+    <div className="space-y-5">
+      <div className="flex justify-between items-center">
+        <h1 className="text-4xl font-mono text-gray-700">{promocode?.code}</h1>
+        <span className={`flex justify-center items-center text-2xl w-10 h-10 rounded-lg bg-gray-400 text-gray-600 border border-gray-500 shadow`}>
+          {promocode.codeType === 'amount' ? '$' : '%'}
+        </span>
+      </div>
+      <DateRange
+        start={promocode.start}
+        end={promocode.end}
+      />
+      <DiscountDetails
+        codeType={promocode.codeType}
+        discount={promocode.discount}
+        maxDiscount={promocode.maxDiscount}
+      />
+      <div className="flex space-x-2">
+        <Link
+          href={`/promocodes/${code}/edit`}
+          className='bg-cyan-300 text-cyan-800 rounded border border-cyan-500 shadow-sm px-3 py-1'
+        >
+          Edit
+        </Link>
+        <DeleteButton id={promocode.id} />
       </div>
     </div>
   );
