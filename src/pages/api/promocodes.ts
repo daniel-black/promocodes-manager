@@ -53,6 +53,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
     data: {
       code: body.code,
       codeType: body.codeType,
+      status: body.status,
       discount: body.discount,
       maxDiscount: body.maxDiscount,
       start: new Date(body.start),

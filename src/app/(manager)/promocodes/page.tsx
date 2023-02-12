@@ -1,7 +1,7 @@
-import { ThreeDots } from "@/components/Icons";
 import { OptionsButton } from "@/components/OptionsButton";
 import { PromocodeDiscountPill } from "@/components/PromocodeDiscountPill";
-import { PromocodeStatusPill } from "@/components/PromocodeStatusPill";
+import { StatusPill } from "@/components/StatusPill";
+
 import { Promocode } from "@/types";
 // import { mockPromocodes } from "@/data";
 import { getBaseURL } from "@/utils/url";
@@ -11,10 +11,10 @@ export default async function PromocodesPage() {
   const promocodesResponse = await fetch(`${getBaseURL()}/api/promocodes`, {
     cache: 'no-store'
   });
-  const promocodes = await promocodesResponse.json();
+  const promocodes = await promocodesResponse.json() as Promocode[];
 
   return (
-    <div className="overflow-auto rounded-lg bg-gray-200 shadow-lg h-[84vh]">
+    <div className="overflow-auto rounded-lg bg-gray-200 shadow-lg h-[84vh] w-full">
       <table className="text-left relative">
         <thead className="sticky top-0 opacity-[97%]">
           <tr className="bg-gray-100 text-gray-500">
@@ -33,8 +33,7 @@ export default async function PromocodesPage() {
                 </Link>
               </td>
               <td className="px-12 py-3">
-                {/* <PromocodeStatusPill status={p.status} /> */}
-                <p>hmm</p>
+                <StatusPill status={p.status} />
               </td>
               <td className="px-12 py-3">
                 <PromocodeDiscountPill codeType={p.codeType} discount={p.discount} />

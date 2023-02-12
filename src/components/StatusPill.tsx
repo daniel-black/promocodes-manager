@@ -1,6 +1,6 @@
 import { Status } from "@/types";
 
-export function PromocodeStatusPill({ status }: { status: Status }) {
+export function StatusPill({ status }: { status: Status }) {
   let pillStyle = 'flex justify-center items-center w-16 py-1 rounded-full text-xs text-center border capitalize';
   // let icon = '';
 
@@ -15,6 +15,10 @@ export function PromocodeStatusPill({ status }: { status: Status }) {
       break;
     case 'disabled':
       pillStyle += ' bg-rose-200 text-rose-600 border-rose-300';
+      // icon = '🚫';
+      break;
+    case 'inactive':
+      pillStyle += ' bg-neutral-200 text-neutral-600 border-neutral-300';
       // icon = '🚫';
       break;
   }

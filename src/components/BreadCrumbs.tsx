@@ -9,7 +9,7 @@ export const BreadCrumbs = () => {
   if (segments.length === 1) return null;
 
   return (
-    <div className="flex space-x-2 text-gray-600">
+    <div className="flex space-x-2 text-gray-600 mb-5">
       {segments.map((segment, i) =>
         <div key={i} className='space-x-2'>
           <span>/</span>

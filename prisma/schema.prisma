@@ -16,6 +16,7 @@ model Promocode {
   updatedAt         DateTime?          @updatedAt
   code              String             @unique
   codeType          String
+  status            String
   discount          Decimal
   maxDiscount       Decimal?
   start             DateTime           @default(now())

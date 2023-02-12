@@ -4,13 +4,11 @@ import { LayoutProps } from "../layout";
 
 export default function ManagerLayout({ children }: LayoutProps) {
   return (
-    <div>
+    <div className="bg-yellow-200 h-screen flex flex-col items-center">
       <Nav />
-      <main className="h-[94vh]">
-        <div className="px-10">
-          <BreadCrumbs />
-        </div>
-        <div className="flex justify-center w-full h-full py-[5vh] px-5">
+      <main className="mt-10 w-5/6 bg-stone-400">
+        <BreadCrumbs />
+        <div className="flex justify-center w-full h-full">
           {children}
         </div>
       </main>

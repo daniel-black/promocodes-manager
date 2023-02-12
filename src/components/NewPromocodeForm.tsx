@@ -27,6 +27,7 @@ export const NewPromocodeForm = () => {
     const body = JSON.stringify({
       code,
       codeType,
+      status: getStatus(startDate, endDate),
       discount: codeType === 'amount' ? amountDiscount : percentDiscount,
       maxDiscount: codeType === 'amount' ? null : maxDiscount,
       start: startDate,
@@ -86,4 +87,14 @@ export const NewPromocodeForm = () => {
       />
     </form>
   );
+}
+
+function getStatus(start: string, end?: string): Status {
+  const now = Date.now();
+  const startTime = new Date(start).getTime();
+  const endTime = end ? new Date(end).getTime() : null;
+
+  return (now > startTime && (!endTime || now < endTime))
+    ? 'active'
+    : 'inactive';
 }
