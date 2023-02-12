@@ -13,6 +13,9 @@ export default async function handler(
     case 'POST':
       await handlePost(req, res);
       break;
+    case 'PATCH':
+      await handlePatch(req, res);
+      break;
     case 'DELETE':
       await handleDelete(req, res);
       break;
@@ -24,7 +27,6 @@ export default async function handler(
 async function handleGet(req: NextApiRequest, res: NextApiResponse) {
   if (Object.keys(req.query).length === 0) {
     const promocodes = await prisma.promocode.findMany();
-    console.log(promocodes)
     res.status(200).json(promocodes);
     return
   }
@@ -47,9 +49,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
     return;
   }
 
-  console.log(req.body);
-
-  const createResult = await prisma.promocode.create({
+  const createdPromocode = await prisma.promocode.create({
     data: {
       code: body.code,
       codeType: body.codeType,
@@ -59,11 +59,44 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
       end: new Date(body.end),
     }
   });
-
-  console.log(createResult);
   
-  // await prisma.promocode.upsert();
-  res.json({msg: 'you wnat to POST?'});
+  res.json({ createdPromocode });
+}
+
+async function handlePatch(req: NextApiRequest, res: NextApiResponse) {
+  const parsedBody = JSON.parse(req.body);
+  console.log(parsedBody);
+  
+  try {
+    const existingCode = await prisma.promocode.findUnique({
+      where: {
+        code: parsedBody.code,
+      }
+    });
+    
+    if (existingCode && existingCode.id !== parsedBody.id) {
+      res.status(400).json({ msg: `"${parsedBody.code}" already exists` });
+      return;
+    }
+
+    const updatedPromocode = await prisma.promocode.update({
+      where: {
+        id: parsedBody.id
+      },
+      data: {
+        code: parsedBody.code,
+        discount: parsedBody.discount,
+        maxDiscount: parsedBody.maxDiscount,
+        start: new Date(parsedBody.startDate),
+        end: new Date(parsedBody.endDate)
+      },
+    });
+    res.status(200).json({ updatedPromocode });
+    return;
+  } catch(e) {
+    res.status(400).json({ error: e });
+    return;
+  }
 }
 
 async function handleDelete(req: NextApiRequest, res: NextApiResponse) {

@@ -17,7 +17,7 @@ export default async function PromocodePage({ params }: {
   const promocodes = await promocodesResponse.json();
 
   const promocode = promocodes.find(pc => pc.code === code);
-  const otherPromocodes = promocodes.filter(pc => pc.code !== code);
+  // const otherPromocodes = promocodes.filter(pc => pc.code !== code);
 
   return (
     <div>
@@ -40,9 +40,15 @@ export default async function PromocodePage({ params }: {
           maxDiscount={promocode.maxDiscount}
         />
         <div className="flex space-x-2">
+          <Link
+            href={`/promocodes/${code}/edit`}
+            className='bg-cyan-300 text-cyan-800 rounded border border-cyan-500 shadow-sm px-3 py-1'
+          >
+            Edit
+          </Link>
           <DeleteButton id={promocode.id} />
         </div>
       </div>
     </div>
   );
-}
+} 
