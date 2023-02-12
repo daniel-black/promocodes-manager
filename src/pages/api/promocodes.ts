@@ -1,4 +1,5 @@
 import { prisma } from '@/db';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -66,5 +67,21 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handleDelete(req: NextApiRequest, res: NextApiResponse) {
-  res.json({msg: 'you wnat to DELETE?'});
+  const parsedBody = JSON.parse(req.body);
+  try {
+    const deletedPromocode = await prisma.promocode.delete({
+      where: {
+        id: parsedBody.id
+      },
+    });
+    res.status(200).json({ deletedPromocode });
+    return;
+  } catch (e) {
+    if (e instanceof PrismaClientKnownRequestError) {
+      res.status(400).json({ error: e.meta?.cause });
+      return;
+    }
+    res.status(400).json({ error: e });
+    return;
+  }
 }
