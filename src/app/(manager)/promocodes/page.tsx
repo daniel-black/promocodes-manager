@@ -104,7 +104,7 @@ function TableFooter() {
     <tfoot className="rounded-b-xl">
       <tr>
         <th
-          colSpan={5}
+          colSpan={6}
           className='py-3 bg-emerald-200 rounded-b-xl'
         >
           <Link

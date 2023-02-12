@@ -47,27 +47,30 @@ export const OptionsButton = ({ code, id }: OptionsButtonProps) => {
         <ThreeDots />
       </button>
       {showOptions &&
-        <div className="absolute top-7 left-1 px-4 py-3 bg-gray-50 z-10 shadow-lg rounded space-y-2">
-          {isDeleting ? (
-            <p className="text-rose-500">Deleting...</p>
-          ) : (
-            <>
-              <Link
-                href={`/promocodes/${code}/edit`}
-                className='text-sky-400 flex'
-              >
-                <Edit />&nbsp;Edit
-              </Link>
-              <button
-                onClick={handleDelete}
-                className="text-rose-500 flex"
-                disabled={isDeleting}
-              >
-                <Delete />&nbsp;Delete
-              </button>
-            </>
-          )}
-        </div>
+        <>
+          <div className="absolute top-9 -left-4 px-4 py-3 bg-gray-50 z-10 shadow-lg rounded-lg space-y-2">
+            {isDeleting ? (
+              <p className="text-rose-500">Deleting...</p>
+            ) : (
+              <>
+                <Link
+                  href={`/promocodes/${code}/edit`}
+                  className='text-sky-400 flex px-3 py-1 hover:bg-sky-100 rounded'
+                >
+                  <Edit />&nbsp;Edit
+                </Link>
+                <button
+                  onClick={handleDelete}
+                  className="text-rose-500 flex px-3 py-1 hover:bg-rose-100 rounded"
+                  disabled={isDeleting}
+                >
+                  <Delete />&nbsp;Delete
+                </button>
+              </>
+            )}
+          </div>
+          <div className="bg-gray-50 z-10 w-3 h-3 rotate-45 absolute top-8 left-[9px]"></div>
+        </>
       }
     </div>
   );
