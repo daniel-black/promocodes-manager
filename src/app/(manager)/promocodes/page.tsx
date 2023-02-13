@@ -27,14 +27,14 @@ export default async function PromocodesPage() {
 
 function TableHeader() {
   return (
-    <thead className="bg-gray-400 text-gray-700">
+    <thead className="bg-gray-500 text-gray-400">
       <tr>
         <th className="py-3 pl-10 rounded-tl-xl text-left"></th>
-        <th className="py-3 text-left">Code</th>
-        <th className="py-3">Discount</th>
-        <th className="py-3">Status</th>
-        <th className="py-3">Start</th>
-        <th className="py-3 rounded-tr-xl">End</th>
+        <th className="py-3 text-left">CODE</th>
+        <th className="py-3">DISCOUNT</th>
+        <th className="py-3">STATUS</th>
+        <th className="py-3">START</th>
+        <th className="py-3 rounded-tr-xl">END</th>
       </tr>
     </thead>
   );
@@ -46,16 +46,16 @@ type TableBodyProps = {
 
 function TableBody({ promocodes }: TableBodyProps) {
   return (
-    <tbody className="bg-gray-200 max-h-[50vh] overflow-scroll">
+    <tbody className="bg-gray-400">
       {promocodes.length > 0 ? (
         promocodes.map(p =>
           <tr key={p.code} className='hover:bg-gray-300 duration-75 transition-all ease-linear'>
-            <td className="w-10">
+            <td className="w-14">
               <div className="flex justify-center">
                 <OptionsButton code={p.code} id={p.id} />
               </div>
             </td>
-            <td className="py-3 font-mono text-gray-700 text-left">
+            <td className="py-3 font-mono text-gray-800 text-left">
               <Link
                 href={`/promocodes/${p.code}`}
                 className='hover:underline'
@@ -73,12 +73,12 @@ function TableBody({ promocodes }: TableBodyProps) {
                 <StatusPill status={p.status} />
               </div>
             </td>
-            <td className="text-gray-500">
+            <td className="text-gray-600">
               <div className="flex justify-center">
                 {dateFormatter.format(new Date(p.start))}
               </div>
             </td>
-            <td className="text-gray-500">
+            <td className="text-gray-600">
               <div className="flex justify-center">
               {p.end 
                 ? dateFormatter.format(new Date(p.end))
@@ -105,12 +105,12 @@ function TableFooter() {
       <tr>
         <th
           colSpan={6}
-          className='py-3 bg-emerald-200 rounded-b-xl'
+          className='rounded-b-xl py-3 bg-gray-200 hover:bg-gray-50 duration-75 transition-all'
         >
           <Link
             href={'/promocodes/new'}
           >
-            + New
+            <div>+ New</div>
           </Link>
         </th>
       </tr>

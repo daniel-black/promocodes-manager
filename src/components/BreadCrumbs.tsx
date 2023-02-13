@@ -9,13 +9,13 @@ export const BreadCrumbs = () => {
   if (segments.length === 1) return null;
 
   return (
-    <div className="flex space-x-4 text-gray-600 mb-10 select-none">
+    <div className="flex space-x-4 text-gray-900 mb-10 select-none">
       {segments.map((segment, i) =>
         <div key={i} className='space-x-4'>
-          <span className="text-gray-400">/</span>
+          {i > 0 && <span className="text-gray-800">/</span>}
           <Link
             href={buildHref(segments, i)}
-            className={`capitalize hover:underline ${i === segments.length - 1 ? 'text-gray-800' : ''}`}
+            className={`capitalize hover:underline`}
           >
             {segment}
           </Link>

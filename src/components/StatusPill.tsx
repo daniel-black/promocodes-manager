@@ -6,34 +6,28 @@ type StatusPillProps = {
 };
 
 export function StatusPill({ status, big = false }: StatusPillProps) {
-  let pillStyle = 'flex justify-center items-center rounded-full text-center border capitalize';
+  let pillStyle = 'flex justify-center items-center rounded-full text-center capitalize';
   pillStyle += big 
     ? ' px-4 py-2 text-xl'
-    : ' px-2 py-1 text-xs';
-  // let icon = '';
+    : ' w-16 py-1 text-xs';
 
   switch (status) {
     case 'active':
-      pillStyle += ' bg-green-300 text-green-700 border-green-400';
-      // icon = '▶️';
+      pillStyle += ' bg-green-800 text-green-400';
       break;
     case 'paused':
-      pillStyle += ' bg-yellow-200 text-yellow-600 border-yellow-400';
-      // icon = '⏸️';
+      pillStyle += ' bg-orange-800 text-orange-400';
       break;
     case 'disabled':
-      pillStyle += ' bg-rose-200 text-rose-600 border-rose-300';
-      // icon = '🚫';
+      pillStyle += ' bg-stone-900 text-stone-400';
       break;
     case 'inactive':
-      pillStyle += ' bg-neutral-200 text-neutral-600 border-neutral-300';
-      // icon = '🚫';
+      pillStyle += ' bg-gray-700 text-gray-300';
       break;
   }
 
   return (
     <div className={pillStyle}>
-      {/* {icon}&nbsp; */}
       {status}
     </div>
   );

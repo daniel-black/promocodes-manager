@@ -7,14 +7,14 @@ type PromocodeDiscountPillProps = {
 
 export function PromocodeDiscountPill({ codeType, discount }: PromocodeDiscountPillProps) {
   const isAmount = codeType === 'amount';
-  const pillStyle = `
-    flex justify-center items-center w-12 py-1
-    rounded-full text-xs text-center border 
+
+  const pillStyle = 
+    `flex justify-center items-center w-12 py-1
+    rounded-full text-xs text-center font-mono
     ${isAmount
-      ? 'bg-violet-300 text-violet-700 border-violet-500' 
-      : 'bg-sky-300 text-sky-700 border-sky-500'
-    }
-  `;
+      ? 'bg-green-100 text-green-600' 
+      : 'bg-blue-100 text-blue-600'
+    }`;
 
   const displayText = isAmount
     ? `$${discount}`
